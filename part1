@@ -10,3 +10,25 @@ Create a namespace named apx-x998-yourname
 Get the list of nodes in JSON format and store it in a file at /tmp/nodes-yourname
 /kubectl get nodes -o json > ./tmp/nodes-barak/
 
+Create a service messaging-service to expose the messaging application within the
+cluster on port 6379.
+/kubectl expose pod messaging --type ClusterIP --port 6379 --name messaging-service/
+
+And with Yaml:(created with vi)
+/apiVersion: v1
+kind: Service
+metadata:
+  name: messaging-service
+spec:
+  selector:
+    app: messaging
+  ports:
+    - protocol: TCP
+      port: 6379
+      targetPort: 6379
+  type: ClusterIP
+/
+----
+then apply -f to the file
+
+
