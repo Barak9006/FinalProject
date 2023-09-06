@@ -1,0 +1,12 @@
+Deploy a pod named nginx-pod using the nginx:alpine image.
+/kubectl run nginx-pod-barak --image nginx:alpine/
+
+Deploy a messaging pod using the redis:alpine image with the labels set to tier=msg.
+/kubectl run messaging --image redis:alpine --labels tier=msg/
+
+Create a namespace named apx-x998-yourname
+/kubectl create namespace apx-x998-barak/
+
+Get the list of nodes in JSON format and store it in a file at /tmp/nodes-yourname
+/kubectl get nodes -o json > ./tmp/nodes-barak/
+
