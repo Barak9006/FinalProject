@@ -29,6 +29,38 @@ spec:
   type: ClusterIP
 /
 ----
-then apply -f to the file
+then apply -f to the file/
 
+Create a deployment named hr-web-app using the image kodekloud/webapp-color
+/kubectl create deployment hr-web-app --image kodekloud/webapp-color --replicas 2/
+
+Create a static pod named static-busybox on the master node that uses the busybox
+image and the command sleep 1000
+/I did json file and moved it to Manifests folder. 
+{
+  "apiVersion": "v1",
+  "kind": "Pod",
+  "metadata": {
+    "name": "static-busybox",
+    "namespace": "default"
+  },
+  "spec": {
+    "containers": [
+      {
+        "name": "busybox-container",
+        "image": "busybox",
+        "command": ["sleep", "1000"]
+      }
+    ],
+    "restartPolicy": "Never"  //static 
+  }
+}/
+
+Create a POD in the finance-yourname namespace named temp-bus with the image
+redis:alpine
+/kubectl create namespace finance-barak
+kubectl run temp-bus --image redis:alpine --namespace finance-barak/
+
+
+ 
 
