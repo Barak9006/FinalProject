@@ -61,6 +61,21 @@ redis:alpine
 /kubectl create namespace finance-barak
 kubectl run temp-bus --image redis:alpine --namespace finance-barak/
 
+Create a Persistent Volume with the given specification
+yaml:
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-analytics
+spec:
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: /pv/data-analytics #created automatically
+
+
 
  
 
