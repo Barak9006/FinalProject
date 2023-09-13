@@ -1,9 +1,11 @@
-Q1.
+## Q1.
+```
 barakuva@cloudshell:~$ cat config.txt
 key1=value1
 key2=value2
-
-Q2.
+```
+## Q2.
+```
 kubectl create configmap keyvalcfgmap --from-file=config.txt
 barakuva@cloudshell:~$ kubectl describe configmap keyvalcfgmap
 Name:         keyvalcfgmap
@@ -23,8 +25,9 @@ BinaryData
 ====
 
 Events:  <none>
-
-Q3.
+```
+## Q3.
+```
 kubectl run nginx --image=nginx --restart=Never --dry-run -o yaml \
   --overrides='
   {
@@ -50,5 +53,6 @@ barakuva@cloudshell:~$ kubectl exec -it nginx -- /bin/sh
 # echo $key2  
 
 # exit
+```
 
 kubectl delete pod nginx
