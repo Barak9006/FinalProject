@@ -140,9 +140,15 @@ spec:
 ```
 ## Q17:
 ```
+kubectl describe pod nginx
+```
+```
 Node:             minikube/192.168.49.2
 ```
 ## Q18:
+```
+kubectl describe pod nginx
+```
 ```
 QoS Class:                   BestEffort
 Node-Selectors:              nodeName=nginxnode
