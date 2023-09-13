@@ -119,17 +119,24 @@ kubectl label nodes minikube nodeName=nginxnode
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nginx
+  creationTimestamp: null
   labels:
     run: nginx
+  name: nginx
 spec:
-  nodeSelector:
-    nodeName: nginxnode
   containers:
-  - name: nginx
-    image: nginx
+  - image: nginx
+    name: nginx
   dnsPolicy: ClusterFirst
   restartPolicy: Never
+  nodeSelector:
+    nodeName: nginxnode
+  tolerations: #forcing it
+  - key: nodeName
+    operator: Equal
+    value: nginxnode
+    effect: NoSchedule
+
 ```
 ## Q17:
 ```
@@ -137,7 +144,19 @@ Node:             minikube/192.168.49.2
 ```
 ## Q18:
 ```
-works
+QoS Class:                   BestEffort
+Node-Selectors:              nodeName=nginxnode
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+                             nodeName=nginxnode:NoSchedule
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  31s   default-scheduler  Successfully assigned default/nginx to minikube
+  Normal  Pulling    30s   kubelet            Pulling image "nginx"
+  Normal  Pulled     29s   kubelet            Successfully pulled image "nginx" in 1.045394106s (1.045405233s including waiting)
+  Normal  Created    29s   kubelet            Created container nginx
+  Normal  Started    29s   kubelet            Started container nginx
 ```
 
 
